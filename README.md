@@ -1,8 +1,10 @@
-# parser
-Parser Test
+### LOG PARSER 0.0.1 ####
 
-# Main class: com.ef.Parser.java. Example on how to run:
+# Build JAR:
 
+$ mvn package
+
+# Run JAR:
 java -jar "LogParser-0.0.1-SNAPSHOT.jar" 2017-01-01.13:00:00 hourly 100 
 
 1º Parameter: Initial date
