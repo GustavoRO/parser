@@ -36,10 +36,10 @@ public class ParserServiceTest {
 
 		Calendar calendar = Calendar.getInstance();
 
-		calendar.set(2017, 01, 01, 00, 00);
+		calendar.set(2017, 00, 01, 00, 00, 00);
 
 		try {
-			service.saveBlockLogTimePeriod(calendar.getTime(), TypeSeachENUM.HOURLY.val, 100);
+			service.saveBlockLogTimePeriod(calendar.getTime(), TypeSeachENUM.HOURLY.val, 200);
 		} catch (Exception e) {
 			assert false;
 			e.printStackTrace();
@@ -51,11 +51,12 @@ public class ParserServiceTest {
 	@Test
 	public void testGetNumberRequestsFromIp() {
 
-		String testIp = "192.168.11.231";
-		Long result = 0l;
+		String testIp = "192.168.234.82";
+		Integer result = 0;
 
 		try {
 			result = service.getNumberRequestsFromIp(testIp);
+			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

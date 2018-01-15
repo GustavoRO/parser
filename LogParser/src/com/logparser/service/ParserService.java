@@ -53,9 +53,9 @@ public class ParserService implements Serializable {
 	public void saveBlockLogTimePeriod(Date init, int duration, int qtd) throws Exception {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(init);
-		if(duration == TypeSeachENUM.HOURLY.val){
+		if (duration == TypeSeachENUM.HOURLY.val) {
 			cal.add(Calendar.HOUR_OF_DAY, 1);
-		}else{
+		} else {
 			cal.set(Calendar.HOUR_OF_DAY, 23);
 			cal.set(Calendar.MINUTE, 59);
 			cal.set(Calendar.MINUTE, 59);
@@ -64,16 +64,18 @@ public class ParserService implements Serializable {
 		for (LogDTO logDTO : logs) {
 			Blocked blocked = new Blocked();
 			blocked.setIp(logDTO.getIp());
-			blocked.setQuantity(logDTO.getCount());
-			blocked.setMessage(" Blocked because had too many access: "+qtd);
-			
-			dao.saveBlocked(blocked);
-			
-			System.out.println("IP: "+blocked.getIp()+ ", number of requests: "+blocked.getQuantity());
+			blocked.setQuantity(logDTO.getCount().intValue());
+			blocked.setMessage(" Blocked because had too many access: " + qtd);
+
+			if (blocked.getQuantity() >= qtd) {
+				dao.saveBlocked(blocked);
+
+				System.out.println("IP: " + blocked.getIp() + ", number of requests: " + blocked.getQuantity());
+			}
 		}
 	}
 
-	public Long getNumberRequestsFromIp(String ip) throws Exception {
+	public Integer getNumberRequestsFromIp(String ip) throws Exception {
 		return dao.countNumberAccess(ip);
 	}
 

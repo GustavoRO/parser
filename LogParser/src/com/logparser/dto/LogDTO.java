@@ -14,9 +14,9 @@ public class LogDTO implements Serializable {
 
 	private String ip;
 
-	private Integer count;
+	private Long count;
 
-	public LogDTO(String ip, Integer count) {
+	public LogDTO(String ip, Long count) {
 		this.ip = ip;
 		this.count = count;
 	}
@@ -29,11 +29,11 @@ public class LogDTO implements Serializable {
 		this.ip = ip;
 	}
 
-	public Integer getCount() {
+	public Long getCount() {
 		return count;
 	}
 
-	public void setCount(Integer count) {
+	public void setCount(Long count) {
 		this.count = count;
 	}
 

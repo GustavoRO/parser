@@ -44,10 +44,10 @@ public class ParserDAO implements Serializable {
 		EntityManager em = HibernateUtil.getEntityManager();
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("select com.logparser.dto.LogDTO(l.id, count(l.id) as totLog) from Log l ");
-		sql.append(" where l.date => :init ");
-		sql.append("and l.date <= :last ");
-		sql.append("group by l.id");
+		sql.append("select new com.logparser.dto.LogDTO(l.ip, count(l.id) as totLog) from Log l ");
+		sql.append(" where l.time >= :initDate ");
+		sql.append("and l.time <= :lastDate ");
+		sql.append("group by l.ip ");
 		sql.append("order by totLog desc ");
 	
 		Query query = em.createQuery(sql.toString());
@@ -58,17 +58,18 @@ public class ParserDAO implements Serializable {
 
 	}
 
-	public Long countNumberAccess(String ip) throws Exception {
+	public Integer countNumberAccess(String ip) throws Exception {
 		EntityManager em = HibernateUtil.getEntityManager();
 
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select count(b.quantity) from Blocked b ");
+		sql.append(" select b.quantity from Blocked b ");
 		sql.append(" where b.ip = :ip ");
 
 		Query query = em.createQuery(sql.toString());
 		query.setParameter("ip", ip);
+		query.setMaxResults(1);
 
-		return (Long) query.getSingleResult();
+		return (Integer) query.getSingleResult();
 	}
 
 }
