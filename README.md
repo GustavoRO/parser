@@ -3,7 +3,7 @@ Parser Test
 
 # Main class: com.ef.Parser.java. Example on how to run:
 
-java -cp "parser.jar" com.ef.Parser --accesslog=/path/to/file --startDate=2017-01-01.13:00:00 --duration=hourly --threshold=100 
+java -cp "parser.jar" com.ef.Parser 2017-01-01.13:00:00 hourly 100 
 
 # MySQL schema
 
