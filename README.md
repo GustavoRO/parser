@@ -8,7 +8,9 @@ mvn package
 java -jar "LogParser-0.0.1-SNAPSHOT.jar" 2017-01-01.13:00:00 hourly 100 
 
 1º Parameter: Initial date
+
 2º Parameter: hourly/daily option of search
+
 3º Parameter: Number of requests
 
 # MySQL schema
