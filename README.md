@@ -26,5 +26,11 @@ CREATE TABLE `blocked` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+# SQL Tests
 
+### Get the number of requests grouped by IPs in a given time
+
+select l.ip, count(l.ip)  FROM log_parser.full_log l
+where time > '2017-01-01.00:00:00' and time < '2017-01-01.00:01:00'
+group by l.ip
 
