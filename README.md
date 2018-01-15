@@ -33,3 +33,7 @@ CREATE TABLE `blocked` (
 select l.ip, count(l.ip)  FROM log_parser.full_log l
 where time > '2017-01-01.00:00:00' and time < '2017-01-01.00:01:00'
 group by l.ip
+
+### List blocked IPs
+
+select bl.ip, bl.quantity, bl.message from log_parser.blocked as bl;
