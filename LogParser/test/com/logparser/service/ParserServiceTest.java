@@ -1,12 +1,14 @@
 package com.logparser.service;
 
-import static org.junit.Assert.*;
+import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.logparser.dto.TypeSeachENUM;
+
 public class ParserServiceTest {
-	
+
 	private ParserService service;
 
 	@Before
@@ -14,31 +16,52 @@ public class ParserServiceTest {
 		service = new ParserService();
 	}
 
-	@Test
+	// @Test
 	public void testLoadLogIntoFile() {
-		fail("Not yet implemented");
+
+		boolean loaded = false;
+
+		try {
+			loaded = service.loadLogIntoFile();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		assert loaded;
+
 	}
 
 	@Test
-	public void testPrintLogTimePeriod() {
-		fail("Not yet implemented");
+	public void testBlockIPTimePeriod() {
+
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.set(2017, 01, 01, 00, 00);
+
+		try {
+			service.saveBlockLogTimePeriod(calendar.getTime(), TypeSeachENUM.HOURLY.val, 100);
+		} catch (Exception e) {
+			assert false;
+			e.printStackTrace();
+		}
+
+		assert true;
 	}
 
 	@Test
 	public void testGetNumberRequestsFromIp() {
-		
+
 		String testIp = "192.168.11.231";
 		Long result = 0l;
-		
+
 		try {
 			result = service.getNumberRequestsFromIp(testIp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		assert(result > 200);
-		
+
+		assert (result > 200);
+
 	}
 
 }

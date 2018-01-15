@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.logparser.dto.LogDTO;
 import com.logparser.entity.Blocked;
 import com.logparser.entity.Log;
 
@@ -39,14 +40,19 @@ public class ParserDAO implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Log> listar(Date initDate, Date lastDate, Integer minRequests) throws Exception {
+	public List<LogDTO> listar(Date initDate, Date lastDate, Integer minRequests) throws Exception {
 		EntityManager em = HibernateUtil.getEntityManager();
 
 		StringBuilder sql = new StringBuilder();
-		sql.append(" from Log l ");
-
+		sql.append("select com.logparser.dto.LogDTO(l.id, count(l.id) as totLog) from Log l ");
+		sql.append(" where l.date => :init ");
+		sql.append("and l.date <= :last ");
+		sql.append("group by l.id");
+		sql.append("order by totLog desc ");
 	
 		Query query = em.createQuery(sql.toString());
+		query.setParameter("initDate", initDate);
+		query.setParameter("lastDate", lastDate);
 		
 		return query.getResultList();
 
@@ -56,8 +62,8 @@ public class ParserDAO implements Serializable {
 		EntityManager em = HibernateUtil.getEntityManager();
 
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select count(l) from Log l ");
-		sql.append(" where l.ip = :ip ");
+		sql.append(" select count(b.quantity) from Blocked b ");
+		sql.append(" where b.ip = :ip ");
 
 		Query query = em.createQuery(sql.toString());
 		query.setParameter("ip", ip);

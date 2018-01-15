@@ -9,6 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entity representing the Blocked IPs saved in the database
+ * 
+ * @author gustavo.oliveira
+ *
+ */
 @Entity
 @Table(name = "blocked")
 public class Blocked implements Serializable {

@@ -1,7 +1,10 @@
 package com.logparser.entity;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entity representing each Access Log
+ * 
+ * @author gustavo.oliveira
+ *
+ */
 @Entity
 @Table(name = "full_log")
 public class Log implements Serializable {
@@ -31,6 +40,19 @@ public class Log implements Serializable {
 	private String status;
 
 	private String agent;
+
+	public Log(String dataInit, String ip, String reqType, String status, String agent) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss", Locale.ENGLISH);
+		try {
+			time = sdf.parse(dataInit);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.ip = ip;
+		this.requestType = reqType;
+		this.status = status;
+		this.agent = agent;
+	}
 
 	public Long getId() {
 		return id;
