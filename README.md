@@ -2,7 +2,7 @@
 
 # Build JAR:
 
-$ mvn package
+mvn package
 
 # Run JAR:
 java -jar "LogParser-0.0.1-SNAPSHOT.jar" 2017-01-01.13:00:00 hourly 100 
@@ -43,3 +43,7 @@ group by l.ip
 ### List blocked IPs
 
 select bl.ip, bl.quantity, bl.message from log_parser.blocked as bl;
+
+### List the number of requests of a blocked IP
+
+select bl.quantity from log_parser.blocked bl where bl.ip='192.168.234.82'
