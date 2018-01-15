@@ -16,7 +16,7 @@ public class Parser {
 	        String threshold = args[2];
 	        
 	        
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss", Locale.ENGLISH);
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd.HH:mm:ss", Locale.ENGLISH);
 	        Date init = sdf.parse(startDate);
 	        int durType = TypeSeachENUM.HOURLY.val;
 	        if(duration.equals("daily")){

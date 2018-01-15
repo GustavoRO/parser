@@ -40,6 +40,9 @@ public class Log implements Serializable {
 	private String status;
 
 	private String agent;
+	
+	public Log() {
+	}
 
 	public Log(String dataInit, String ip, String reqType, String status, String agent) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss", Locale.ENGLISH);
