@@ -34,7 +34,8 @@ CREATE TABLE `blocked` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-## The first ParserServiceTest method is to load all the log into the database thats why its commented, so before running the program plz run the the tests. I removed from the jar parameter because its supposed to run only once, its reading the file from C://Java//access.log. I can create another method with a custom path if needed just for this loading.
+# Log Database Loading
+ The first ParserServiceTest method is to load all the log into the database thats why its commented, so before running the program plz run the the tests. I removed from the jar parameter because its supposed to run only once, its reading the file from C://Java//access.log. I can create another method with a custom path if needed just for this loading.
 
 # SQL Tests
 
